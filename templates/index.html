@@ -1,0 +1,272 @@
+<html>
+    <head>
+        <title>Akademics Wrapped</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+
+    <body>
+
+        <header class="header" role="banner">
+            <h1 class="logo">
+              <a href="#">Akademics <span>Wrapped</span></a>
+            </h1>
+            <h3 class="author"><b>By:</b> Mohammed Perves</h3>
+            <div class="form__group field">
+                <select name="school_name" id="school_name">
+                    {% for school in schools %}
+                      <option value="{{ school }}">{{ school }}</option>
+                    {% endfor %}
+                  </select>
+                <label for="school_name" class="form__label">School Name</label>
+            </div>
+            <div class="form__group field">
+                <select name="program" id="program">
+                  {% for program in programs %}
+                    <option value="{{ program }}">{{ program }}</option>
+                  {% endfor %}
+                </select>
+                <label for="program" class="form__label">Program</label>
+            </div>
+            <div class="form__group field">
+                <input type="range" min="1" max="5" value="1" placeholder="1" name="year" id='year'>
+                <label for="year" class="form__label">Year</label>
+            </div>
+            <div class="form__group field">
+                <input type="text" class="form__field" value="I survived..." maxlength="80" placeholder="Describe your year" name="desc" id='desc' required />
+                <label for="desc" class="form__label">Describe your year</label>
+            </div>
+
+            <div class="form__group field">
+              <input type="number" min="0" max="100" value="3" placeholder="3" name="books" id='books'>
+              <label for="year" class="form__label">Books Read</label>
+            </div>
+
+            <div class="form__group field">
+              <input type="number" min="0" max="100" value="0" placeholder="0" name="assigns" id='assigns'>
+              <label for="year" class="form__label">Assignments Completed</label>
+            </div>
+
+            <div class="form__group field">
+              <input type="number" min="0" max="100" value="0" placeholder="0" name="tests" id='tests'>
+              <label for="year" class="form__label">Tests Written</label>
+            </div>
+
+            <div class="form__group field">
+              <input type="number" min="0" max="100" value="0" placeholder="0" name="pres" id='pres'>
+              <label for="year" class="form__label">Presentations Presented</label>
+            </div>
+
+            <div class="form__group field">
+              <input type="number" min="0" max="100" value="0" placeholder="0" name="coffees" id='coffees'>
+              <label for="year" class="form__label">Coffees Drank</label>
+            </div>
+
+            <div class="form__group field">
+              <input type="number" min="0" max="100" value="0" placeholder="0" name="nighters" id='nighters'>
+              <label for="year" class="form__label">All-nighters Pulled</label>
+            </div>
+      
+
+            <div class="form__group field">
+              <input type="color" id="color1" name="color1" value="#FF0000" value="1">
+              <label for="color1" class="form__label">Colour 1</label>
+            </div>
+            <div class="form__group field">
+              <input type="color" id="color2" name="color2" value="#0BD8F4">
+              <label for="color2" class="form__label">Colour 2</label>
+            </div>
+            <div class="form__group field">
+              <input type="number" min="0" max="360" value="135" step="15" placeholder="135" name="degree" id='degree'>
+              <label for="grd_a" class="form__label">Gradient Rotation</label>
+            </div>
+
+
+            <table>
+              <tr>
+                <td>
+                  <div class="form__group field">
+                    <input type="number" min="0" max="15" value="0" step="1" placeholder="0" name="grd_a" id='grd_a'>
+                    <label for="grd_a" class="form__label">A Grades</label>
+                  </div>
+                </td>
+                <td>
+                  <div class="form__group field">
+                    <input type="number" min="0" max="15" value="0" step="1" placeholder="0" name="grd_b" id='grd_b'>
+                    <label for="grd_b" class="form__label">B Grades</label>
+                  </div>
+                </td>
+                <td>
+                  <div class="form__group field">
+                    <input type="number" min="0" max="15" value="0" step="1" placeholder="0" name="grd_c" id='grd_c'>
+                    <label for="grd_c" class="form__label">C Grades</label>
+                  </div>
+                </td>
+                <td>
+                  <div class="form__group field">
+                    <input type="number" min="0" max="15" value="0" step="1" placeholder="0" name="grd_d" id='grd_d'>
+                    <label for="grd_d" class="form__label">D Grades</label>
+                  </div>
+                </td>
+              </tr>
+              
+            </table>
+
+            
+            <div class="form__group field">
+              <input type="file"  accept="image/png" name="logo_img" id="logo_img" onchange="loadLogoImg(event)">
+              <label for="logo_img" class="form__label">Upload Transparent School Logo (.PNG)</label>
+            </div>
+
+
+            <div class="form__group field">
+              <button class="btn" onclick="download()">Download</button>
+            </div>
+
+
+            
+        </header>
+
+        <div class="info box">
+          Drag the logo image around until it is perfect!
+        </div>
+
+        <div class="wrapper" id="wrapper">
+            <div class="overviewInfo" id="overviewInfo">
+              <div class="actions">
+                <div class="cartbutton"> 
+                </div>
+              </div>
+              
+              <div class="productinfo">
+                <div class="grouptext">
+                   <h3>SCHOOL</h3>
+                   <p id="sn_txt">Wilfrid Laurier University</p>
+                </div>
+                <div class="grouptext">
+                   <h3>PROGRAM</h3>
+                   <p id="program_txt">Business / Computer Science</p>
+                </div>
+                <div class="grouptext" >
+                   <h3>YEAR</h3>
+                   <p id="year_txt">1</p>
+                </div>
+                
+                
+                <div id="logo" class="productImage">
+                  <img id="output" src="{{ url_for('static', filename='img/wlu.png') }}" class="dragme"/>
+                </div>
+                
+            </div>
+               
+          </div> 
+            <!-- overview info -->
+            
+            <div class="productSpecifications">
+              <h1> My Year Wrapped </h1>
+              <p id="desc_txt"> I survived... </p>
+              
+              <div class="productFeatures">
+                <div class="feature">
+                  <div class="featureIcon">
+                    <li class="fas fa-book fa-3x"></li>
+                  </div>
+                  <div class="featureText">
+                    <p><b>Books</b></p>
+                    <p id="books_txt">3</p>
+                  </div>
+                </div>
+                <div class="feature">
+                  <div class="featureIcon">
+                    <li class="fas fa-tasks fa-3x"></li>
+                  </div>
+                   <div class="featureText">
+                    <p> <strong>Assignments</strong></p>
+                    <p id="assigns_txt">0</p>
+                  </div>
+                 </div>
+                <div class="feature">
+                  <div class="featureIcon">
+                    <li class="fas fa-clipboard-check fa-3x"></li>
+                  </div>
+                   <div class="featureText">
+                    <p> <strong>Tests</strong></p>
+                    <p id="tests_txt">0</p>
+                  </div>
+                  </div>
+                <div class="feature">
+                  <div class="featureIcon">
+                    <li class="fas fa-file-powerpoint fa-3x"></li>
+                  </div>
+                   <div class="featureText">
+                    <p> <strong>Presentations</strong></p>
+                    <p id="present_txt">0</p>
+                  </div>
+                </div>
+                <div class="feature">
+                    <div class="featureIcon">
+                      <li class="fas fa-mug-hot fa-3x"></li>
+                    </div>
+                     <div class="featureText">
+                      <p> <strong>Coffees</strong></p>
+                      <p id="cof_txt">0</p>
+                    </div>
+                    </div>
+                  <div class="feature">
+                    <div class="featureIcon">
+                      <li class="fas fa-adjust fa-3x"></li>
+                    </div>
+                     <div class="featureText">
+                      <p> <strong>All-nighters</strong></p>
+                      <p id="nighters_txt">0</p>
+                    </div>
+                  </div>
+              </div>
+              
+              <div class="checkoutButton">
+                <div class="priceTag">
+                  <span>A<sub>s</sub></span><div id="a_txt">0</div>
+                </div>
+                <div class="priceTag">
+                  <span id="b_txt">B<sub>s</sub></span><div id="b_txt">0</div>
+                </div>
+                <div class="priceTag">
+                  <span id="c_txt">C<sub>s</sub></span><div id="c_txt">0</div>
+                </div>
+                <div class="priceTag">
+                  <span id="d_txt">D<sub>s</sub></span><div id="d_txt">0</div>
+                </div>
+
+              </div>
+            </div>
+            <!-- product specificaiton -->
+            
+          </div>
+          <!-- wrapper-->
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/drag.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/html2canvas.min.js') }}"></script>
+    
+    <script>
+      function download(){
+            html2canvas(document.querySelector("#wrapper"), {backgroundColor:null}).then(canvas => {
+
+                //document.body.appendChild(canvas)
+                var image = canvas.toDataURL();
+                // Create a link
+                var aDownloadLink = document.createElement('a');
+                // Add the name of the file to the link
+                aDownloadLink.download = 'my_year_wrapped.png';
+                // Attach the data to the link
+                aDownloadLink.href = image;
+                // Get the code to click the download link
+                aDownloadLink.click();
+          });
+      }
+
+    </script>
+    
+
+</html>
